@@ -3,12 +3,12 @@
 #define NomeDaEmpresa "Sky Informática Ltda."
 #define UrlDaAplicacao "https://github.com/SkyInformatica/CRVA.Monitor.Instalacao"
 #define NomeDoExecutavelDaAplicacao "SkyInfo.Crva.Detran.Digitaliza.Monitor.exe"
-#define CaminhoDaFonteDaAplicacao "D:\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\src"
-#define public Dependency_Path_NetCoreCheck "D:\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Dependências\NetCoreCheck\"
+#define CaminhoDaFonteDaAplicacao "src"
+#define public Dependency_Path_NetCoreCheck "Dependências\NetCoreCheck\"
 
-#include "D:\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Dependências\CodeDependencies.iss"
-#include "D:\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Dependências\UtilitáriosDeAdministraçãoWindows.iss"
-#include "D:\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Dependências\Utilitários.iss"
+#include "Dependências\CodeDependencies.iss"
+#include "Dependências\UtilitáriosDeAdministraçãoWindows.iss"
+#include "Dependências\Utilitários.iss"
 
 [Setup]
 AppId={{9907afbb-90dd-40c4-837b-d0110e845d5d}}
@@ -26,7 +26,7 @@ PrivilegesRequired=lowest
 OutputBaseFilename={#NomeDaAplicacao}.Instalador
 Compression=lzma
 SolidCompression=yes
-OutputDir=D:\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador
+OutputDir=D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador
 WizardStyle=modern
 CloseApplications=force
 MergeDuplicateFiles=no
