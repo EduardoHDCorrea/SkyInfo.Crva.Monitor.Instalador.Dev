@@ -1,5 +1,7 @@
 name: Build do Instalador
 on: push
+permissions:
+  contents: write
 jobs:
   build:
     name: Build do Instalador Inno
@@ -7,8 +9,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Calcular versão
+        id: calcular_versao
+        run: |
+          $minor = [math]::Floor(${{ github.run_number }} / 10)
+          $patch = ${{ github.run_number }} % 10
+          $version = "1.0.$minor.$patch"
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+        shell: pwsh
+
       - name: Compilar Instalador Inno
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.4
         with:
           path: ScriptDoInstalador.iss
-          options: /O+
+          options: /O+ /dVersao="${{ env.VERSION }}"
+
+      - name: Fazer upload do instalador como artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          path: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+
+      - name: Criar uma release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: "Sky Digitaliza - Monitor v${{ env.VERSION }}"
+          draft: false
+          prerelease: true
+
+      - name: Anexar o instalador à release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          asset_name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          asset_content_type: application/octet-stream

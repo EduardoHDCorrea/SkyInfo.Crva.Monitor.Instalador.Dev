@@ -1,5 +1,4 @@
 #define NomeDaAplicacao "SkyInfo.Crva.Detran.Digitaliza.Monitor"
-#define VersaoDaAplicacao "1.0.1.52"
 #define NomeDaEmpresa "Sky Informática Ltda."
 #define UrlDaAplicacao "https://github.com/SkyInformatica/CRVA.Monitor.Instalacao"
 #define NomeDoExecutavelDaAplicacao "SkyInfo.Crva.Detran.Digitaliza.Monitor.exe"
@@ -13,7 +12,7 @@
 [Setup]
 AppId={{9907afbb-90dd-40c4-837b-d0110e845d5d}}
 AppName={#NomeDaAplicacao}
-AppVersion={#VersaoDaAplicacao}
+AppVersion={#Versao}
 AppPublisher={#NomeDaEmpresa}
 AppPublisherURL={#UrlDaAplicacao}
 AppSupportURL={#UrlDaAplicacao}
@@ -49,14 +48,11 @@ Source: "{#CaminhoDaFonteDaAplicacao}\x86\*"; DestDir: "{app}"; Excludes: "appse
 Source: "{#CaminhoDaFonteDaAplicacao}\x86\Armazenamento\Registros.db"; DestDir: "{app}"; Flags: noencryption nocompression; Check: InstalacaoEm32Bits;
 
 [UninstallDelete]
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x64\Chave.txt"; Check: Is64BitInstallMode;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x86\Chave.txt"; Check: InstalacaoEm32Bits;
+Type: files; Name: "{app}\Chave.txt";
 
 [InstallDelete]
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x64\Chave.txt"; Check: Is64BitInstallMode;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x86\Chave.txt"; Check: InstalacaoEm32Bits;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x86\appsettings.json"; Check: Is64BitInstallMode;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x64\appsettings.json"; Check: InstalacaoEm32Bits;
+Type: files; Name: "{app}\Chave.txt"; 
+Type: files; Name: "{app}\appsettings.json";
 
 [Code]
 const Debug = True;
