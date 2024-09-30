@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
   
 jobs:
   build:
@@ -30,23 +31,22 @@ jobs:
           options: /O+ /dVersao="${{ env.VERSION }}"
 
       - name: Fazer upload do instalador como artefato
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.${{ env.VERSION }}.exe
           path: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
 
-      - name: Criar uma release
+      - name: Criar release no GitHub
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1.14.0
         with:
-          tag_name: v${{ env.VERSION }}
-          release_name: "Sky Digitaliza - Monitor v${{ env.VERSION }}"
-          draft: false
-          prerelease: true
+          name: Sky Digitaliza - Monitor v${{ env.VERSION }}
+          tag: v${{ env.VERSION }}
+          makeLatest: true
+          generateReleaseNotes: true
 
-      - name: Anexar o instalador à release
+
+      - name: Anexar arquivos ao release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
