@@ -12,3 +12,30 @@ jobs:
         with:
           path: ScriptDoInstalador.iss
           options: /O+
+
+      - name: Fazer upload do instalador como artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          path: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+
+      - name: Criar uma release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: "Sky Digitaliza - Monitor v${{ github.run_number }}"
+          draft: false
+          prerelease: true
+
+      - name: Anexar o instalador à release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          asset_name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          asset_content_type: application/octet-stream
