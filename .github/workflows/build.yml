@@ -1,5 +1,7 @@
 name: Build do Instalador
 on: push
+permissions:
+  contents: write
 jobs:
   build:
     name: Build do Instalador Inno
