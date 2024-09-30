@@ -22,7 +22,7 @@ jobs:
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.4
         with:
           path: ScriptDoInstalador.iss
-          options: /O+ /dVersaoDaAplicacao="${{ env.VERSION }}"
+          options: /O+ /dVersao="${{ env.VERSION }}"
 
       - name: Fazer upload do instalador como artefato
         uses: actions/upload-artifact@v3

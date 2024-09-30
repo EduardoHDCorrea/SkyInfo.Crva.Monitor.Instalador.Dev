@@ -1,5 +1,4 @@
 #define NomeDaAplicacao "SkyInfo.Crva.Detran.Digitaliza.Monitor"
-#define VersaoDaAplicacao "1.0.1.52"
 #define NomeDaEmpresa "Sky Informática Ltda."
 #define UrlDaAplicacao "https://github.com/SkyInformatica/CRVA.Monitor.Instalacao"
 #define NomeDoExecutavelDaAplicacao "SkyInfo.Crva.Detran.Digitaliza.Monitor.exe"
@@ -13,7 +12,7 @@
 [Setup]
 AppId={{9907afbb-90dd-40c4-837b-d0110e845d5d}}
 AppName={#NomeDaAplicacao}
-AppVersion={#VersaoDaAplicacao}
+AppVersion={#Versao}
 AppPublisher={#NomeDaEmpresa}
 AppPublisherURL={#UrlDaAplicacao}
 AppSupportURL={#UrlDaAplicacao}
