@@ -48,14 +48,11 @@ Source: "{#CaminhoDaFonteDaAplicacao}\x86\*"; DestDir: "{app}"; Excludes: "appse
 Source: "{#CaminhoDaFonteDaAplicacao}\x86\Armazenamento\Registros.db"; DestDir: "{app}"; Flags: noencryption nocompression; Check: InstalacaoEm32Bits;
 
 [UninstallDelete]
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x64\Chave.txt"; Check: Is64BitInstallMode;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x86\Chave.txt"; Check: InstalacaoEm32Bits;
+Type: files; Name: "{app}\Chave.txt";
 
 [InstallDelete]
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x64\Chave.txt"; Check: Is64BitInstallMode;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x86\Chave.txt"; Check: InstalacaoEm32Bits;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x86\appsettings.json"; Check: Is64BitInstallMode;
-Type: files; Name: "{#CaminhoDaFonteDaAplicacao}\x64\appsettings.json"; Check: InstalacaoEm32Bits;
+Type: files; Name: "{app}\Chave.txt"; 
+Type: files; Name: "{app}\appsettings.json";
 
 [Code]
 const Debug = True;
