@@ -1,9 +1,12 @@
 name: Build do Instalador
-on: push
-  - branches:
-    - main
+on: 
+  push:
+    branches:
+      - "main"
+
 permissions:
   contents: write
+  
 jobs:
   build:
     name: Build do Instalador Inno
