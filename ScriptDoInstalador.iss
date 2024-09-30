@@ -68,7 +68,7 @@ var
   PaginaDeSelecaoDaOrganizacao: TInputOptionWizardPage;
   PaginaDeCredenciaisDoWindows: TInputQueryWizardPage;
   Organizacoes: TOrganizacoes;
-  OrganizacaoId, Diretorio, Email, Senha, DominioValido: String;
+  OrganizacaoId, DiretorioDeDocumentosEnviados, DiretorioDeDocumentos, Email, Senha, DominioValido: String;
 
 function DevePularPaginaDeOrganizacao(Page: TWizardPage): Boolean;
 begin
