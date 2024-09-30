@@ -1,5 +1,7 @@
 name: Build do Instalador
 on: push
+  - branches:
+    - main
 permissions:
   contents: write
 jobs:
