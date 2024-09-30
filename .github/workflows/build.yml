@@ -9,11 +9,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Calcular versão
+        id: calcular_versao
+        run: |
+          # O número de execução será dividido para controlar as versões
+          minor=$(( ${{ github.run_number }} / 10 ))
+          patch=$(( ${{ github.run_number }} % 10 ))
+          echo "VERSION=1.0.${minor}.${patch}" >> $GITHUB_ENV
+
       - name: Compilar Instalador Inno
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.4
         with:
           path: ScriptDoInstalador.iss
-          options: /O+
+          options: /O+ /dVersaoDaAplicacao="${{ env.VERSION }}"
 
       - name: Fazer upload do instalador como artefato
         uses: actions/upload-artifact@v3
@@ -27,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ github.run_number }}
-          release_name: "Sky Digitaliza - Monitor v${{ github.run_number }}"
+          tag_name: v${{ env.VERSION }}
+          release_name: "Sky Digitaliza - Monitor v${{ env.VERSION }}"
           draft: false
           prerelease: true
 
