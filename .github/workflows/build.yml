@@ -1,0 +1,14 @@
+name: Build do Instalador
+on: push
+jobs:
+  build:
+    name: Build do Instalador Inno
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compilar Instalador Inno
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.4
+        with:
+          path: ScriptDoInstalador.iss
+          options: /O+
