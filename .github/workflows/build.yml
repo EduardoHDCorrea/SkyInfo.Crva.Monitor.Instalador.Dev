@@ -42,16 +42,8 @@ jobs:
         with:
           name: Sky Digitaliza - Monitor v${{ env.VERSION }}
           tag: v${{ env.VERSION }}
+          artifacts: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
+          artifactContentType: application/octet-stream
           makeLatest: true
           generateReleaseNotes: true
-
-
-      - name: Anexar arquivos ao release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: D:\a\SkyInfo.Crva.Monitor.Instalador.Dev\SkyInfo.Crva.Monitor.Instalador.Dev\Instalador\SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
-          asset_name: SkyInfo.Crva.Detran.Digitaliza.Monitor.Instalador.exe
-          asset_content_type: application/octet-stream
+          artifactErrorsFailBuild: true
